@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğum Günü Kutlaması</title>
+    <title>Özel Kutlama Sayfası</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- İsim Giriş Ekranı -->
     <div id="welcome-screen">
-        <h1>🎉 Doğum Günü Kutlaması 🎂</h1>
-        <p>Adını gir ve kutlamaya katıl!</p>
-        <input type="text" id="nameInput" placeholder="Adını yaz">
-        <button onclick="startCelebration()">Kutlamaya Başla!</button>
+        <h1>✨ Özel Kutlama Sayfası 🎉</h1>
+        <p>Adını yaz ve sürprizi keşfet!</p>
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="Adını yaz..." required>
+            <button onclick="startCelebration()">🎈 Kutlamaya Başla!</button>
+        </div>
     </div>
 
+    <!-- Kutlama Ekranı -->
     <div id="celebration-screen" style="display: none;">
         <h1 id="personalMessage"></h1>
-        <div id="firework" onclick="showBirthdayMessage()">🎆</div>
-        <p id="birthdayMessage" style="display: none;"></p>
+        <div id="firework" onclick="showSpecialMessage()">🎆</div>
+        <p id="specialMessage" style="display: none;"></p>
     </div>
 
+    <canvas id="fireworkCanvas"></canvas> <!-- Havai fişek animasyonu için -->
+    
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+// Kullanıcı adını al ve kutlamayı başlat
 function startCelebration() {
     let userName = document.getElementById("nameInput").value.trim();
     if (userName === "") {
@@ -10,32 +11,72 @@ function startCelebration() {
     
     if (userName.toLowerCase() === "fatma") {
         document.getElementById("personalMessage").innerHTML = "❤️ Seni Seviyorum, Fatma! ❤️";
+        document.getElementById("specialMessage").innerText = "Senin varlığın bu dünyayı daha güzel yapıyor! 🌸";
     } else {
-        document.getElementById("personalMessage").innerText = "İyi ki doğdun, " + userName + "! 🎉";
+        document.getElementById("personalMessage").innerText = "İyi ki buradasın, " + userName + "! 🎉";
+        document.getElementById("specialMessage").innerText = "Hayatın en güzel anlarını yaşamanı diliyorum!";
     }
     
     triggerFireworks();
 }
 
+// Havai fişek efektini başlat
 function triggerFireworks() {
-    for (let i = 0; i < 30; i++) {
-        let particle = document.createElement("div");
-        particle.classList.add("particle");
-        particle.style.left = "50%";
-        particle.style.top = "50%";
-        particle.style.backgroundColor = getRandomColor();
-        document.body.appendChild(particle);
-        
-        setTimeout(() => particle.remove(), 2000);
+    const canvas = document.getElementById("fireworkCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function createParticles(x, y) {
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                size: Math.random() * 5 + 2,
+                color: getRandomColor(),
+                velocityX: (Math.random() - 0.5) * 5,
+                velocityY: (Math.random() - 0.5) * 5,
+                life: 100
+            });
+        }
     }
+
+    function updateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle, index) => {
+            particle.x += particle.velocityX;
+            particle.y += particle.velocityY;
+            particle.life--;
+
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            ctx.fillStyle = particle.color;
+            ctx.fill();
+
+            if (particle.life <= 0) {
+                particles.splice(index, 1);
+            }
+        });
+
+        requestAnimationFrame(updateParticles);
+    }
+
+    canvas.addEventListener("click", (event) => {
+        createParticles(event.clientX, event.clientY);
+    });
+
+    updateParticles();
 }
 
+// Rastgele renk üretme fonksiyonu
 function getRandomColor() {
-    let colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink"];
+    let colors = ["#ff4757", "#ff6b6b", "#ffa502", "#2ed573", "#1e90ff", "#3742fa"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-function showBirthdayMessage() {
-    document.getElementById("birthdayMessage").style.display = "block";
-    document.getElementById("birthdayMessage").innerText = "Senin için özel bir gün! Hayatının en güzel anlarını yaşamanı diliyorum!";
+// Havai fişeğe tıklanınca özel mesaj göster
+function showSpecialMessage() {
+    document.getElementById("specialMessage").style.display = "block";
 }
