@@ -1,82 +1,104 @@
 /* Genel Stil */
 body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    color: white;
-    overflow: hidden;
-    height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
 }
 
 /* İsim Giriş Alanı */
 #welcome-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2; /* Canvas altında */
 }
 
 .input-container {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 3; /* Üstte, aktif */
 }
 
-input {
-    padding: 10px;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    transition: 0.3s;
+.input-container input {
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+  z-index: 3;
+  pointer-events: auto;
 }
 
-input:focus {
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+.input-container input:focus {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
 }
 
-button {
-    background: #ff6b6b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    border-radius: 5px;
-    transition: 0.3s;
+.input-container button {
+  background: #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 5px;
+  transition: 0.3s;
+  z-index: 3;
 }
 
-button:hover {
-    background: #ff4757;
+.input-container button:hover {
+  background: #ff4757;
 }
 
 /* Kutlama Ekranı */
 #celebration-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
 }
 
 /* Havai Fişek Efekti */
 #firework {
-    font-size: 5em;
-    cursor: pointer;
-    animation: pulse 1s infinite;
+  font-size: 5em;
+  cursor: pointer;
+  animation: pulse 1s infinite;
+  position: relative;
+  z-index: 3;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-/* Sürekli Hareket Eden Parçacıklar */
+/* Canvas: Arka plan parçacık animasyonları için */
 canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Başlangıçta pointer-events kapalı, böylece giriş ekranında input’lar engellenmez */
+  pointer-events: none;
 }
