@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffcccb;
+    padding: 50px;
+    overflow: hidden;
+}
+
+#welcome-screen, #celebration-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 2em;
+    color: #d63384;
+}
+
+button {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #ff4757;
+}
+
+#firework {
+    font-size: 5em;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: move 2s infinite;
+}
+
+@keyframes move {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(calc(-50px + 100px * random()), calc(-50px + 100px * random())); opacity: 0; }
+}

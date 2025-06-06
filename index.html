@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doğum Günü Kutlaması</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcome-screen">
+        <h1>🎉 Doğum Günü Kutlaması 🎂</h1>
+        <p>Adını gir ve kutlamaya katıl!</p>
+        <input type="text" id="nameInput" placeholder="Adını yaz">
+        <button onclick="startCelebration()">Kutlamaya Başla!</button>
+    </div>
+
+    <div id="celebration-screen" style="display: none;">
+        <h1 id="personalMessage"></h1>
+        <div id="firework" onclick="showBirthdayMessage()">🎆</div>
+        <p id="birthdayMessage" style="display: none;"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
