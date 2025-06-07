@@ -1,38 +1,104 @@
-/* Modern Gradient Arka Plan */
+/* Genel Stil */
 body {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); /* Koyu ve modern geçiş */
-    color: white;
-    overflow: hidden;
-    height: 100vh;
-    margin: 0;
-    position: relative;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
 }
 
-/* Parçacık Efekti */
-.particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.8); /* Hafif parlaklık efekti */
-    border-radius: 50%;
-    animation: float 5s infinite;
+/* İsim Giriş Alanı */
+#welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2; /* Canvas altında */
 }
 
-/* Parçacıkların Yavaşça Hareket Etmesi */
-@keyframes float {
-    0% { transform: translateY(0); opacity: 0.6; }
-    50% { transform: translateY(-50px); opacity: 1; }
-    100% { transform: translateY(0); opacity: 0.6; }
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 3; /* Üstte, aktif */
 }
 
-/* Giriş Kutusu ve Buton için Hafif Glow Efekti */
-.input-container input, .input-container button {
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-    transition: 0.3s;
+.input-container input {
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+  z-index: 3;
+  pointer-events: auto;
 }
 
-.input-container input:focus, .input-container button:hover {
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+.input-container input:focus {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+.input-container button {
+  background: #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 5px;
+  transition: 0.3s;
+  z-index: 3;
+}
+
+.input-container button:hover {
+  background: #ff4757;
+}
+
+/* Kutlama Ekranı */
+#celebration-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+/* Havai Fişek Efekti */
+#firework {
+  font-size: 5em;
+  cursor: pointer;
+  animation: pulse 1s infinite;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Canvas: Arka plan parçacık animasyonları için */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Başlangıçta pointer-events kapalı, böylece giriş ekranında input’lar engellenmez */
+  pointer-events: none;
 }
